@@ -595,3 +595,67 @@ footer p {
     color: #666;
     padding: 20px;
 }
+/* Estilos para documentos */
+.contenedor-documentos {
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.doc-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.doc-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.doc-icon {
+  width: 24px;
+  height: 24px;
+  fill: #e74c3c;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.view-btn {
+  background: #3498db;
+  color: white;
+}
+
+.download-btn {
+  background: #2ecc71;
+  color: white;
+}
+
+.btn svg {
+  fill: currentColor;
+}
+
+.sin-docs {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
