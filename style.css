@@ -435,3 +435,9 @@ footer p {
   opacity: 0.9;
   transform: translateY(-2px);
 }
+
+.resultados-busqueda {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 1rem;
+}

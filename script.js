@@ -52,4 +52,44 @@ document.addEventListener('DOMContentLoaded', function() {
   // Cargar documentos según la página
   if (window.location.pathname.includes('bloque1')) mostrarDocumentos('bloque1');
   if (window.location.pathname.includes('bloque3')) mostrarDocumentos('bloque3');
+
+  // Activar búsqueda en tiempo real
+  const buscador = document.getElementById('busqueda');
+  if (buscador) {
+    buscador.addEventListener('input', buscarPDF);
+  }
 });
+
+function buscarPDF() {
+  const termino = document.getElementById("busqueda").value.toLowerCase();
+  const resultados = documentos.filter(doc =>
+    doc.nombre.toLowerCase().includes(termino) ||
+    doc.bloque.toLowerCase().includes(termino)
+  );
+
+  const contenedor = document.getElementById("resultados-busqueda");
+  if (!contenedor) return;
+
+  if (termino === "") {
+    contenedor.innerHTML = ""; // vacía si no hay término
+    return;
+  }
+
+  if (resultados.length === 0) {
+    contenedor.innerHTML = "<p>Nun s'atoparon documentos que coincidan cola gueta.</p>";
+    return;
+  }
+
+  contenedor.innerHTML = resultados.map(doc => `
+    <div class="documento">
+      <div class="doc-icon">📄</div>
+      <div class="doc-info">
+        <h3>${doc.nombre}</h3>
+        <div class="doc-acciones">
+          <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
+          <a href="${doc.ruta}" download="${doc.archivo}" class="btn descargar-btn">Descargar</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
