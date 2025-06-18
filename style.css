@@ -384,7 +384,7 @@ footer p {
 }
 
 .resultados-busqueda {
-  max-width: 1000px;
-  margin: 40px auto;
+  max-width: 900px;
+  margin: 1rem auto 3rem auto;
   padding: 0 1rem;
 }

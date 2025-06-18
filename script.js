@@ -61,22 +61,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function buscarPDF() {
-  const termino = document.getElementById("busqueda").value.toLowerCase();
-  const resultados = documentos.filter(doc =>
-    doc.nombre.toLowerCase().includes(termino) ||
-    doc.bloque.toLowerCase().includes(termino)
-  );
-
+  const termino = document.getElementById("busqueda").value.toLowerCase().trim();
   const contenedor = document.getElementById("resultados-busqueda");
-  if (!contenedor) return;
 
-  if (termino === "") {
-    contenedor.innerHTML = ""; // vacía si no hay término
+  if (!contenedor || termino === "") {
+    contenedor.innerHTML = "";
     return;
   }
 
+  const resultados = documentos.filter(doc =>
+    doc.nombre.toLowerCase().startsWith(termino)
+  );
+
   if (resultados.length === 0) {
-    contenedor.innerHTML = "<p>Nun s'atoparon documentos que coincidan cola gueta.</p>";
+    contenedor.innerHTML = "<p style='padding:1rem;'>Nun s’atoparon documentos.</p>";
     return;
   }
 
@@ -93,3 +91,12 @@ function buscarPDF() {
     </div>
   `).join('');
 }
+
+
+// ✅ Conecta el buscador en cuanto cargue la página
+document.addEventListener('DOMContentLoaded', function () {
+  const buscador = document.getElementById("busqueda");
+  if (buscador) {
+    buscador.addEventListener("input", buscarPDF);
+  }
+});
