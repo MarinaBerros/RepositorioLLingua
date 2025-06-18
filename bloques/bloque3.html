@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ast">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloque 3: Dialectología - LA LLINGUA ALLUGA</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body onload="cargarPDFsBloque('bloque3')">
+    <header>
+          <div class="logo-titulo">
+        <a href="../index.html" class="logo-link">
+            <img src="../img/logo-llingua.png" alt="Logo Llingua Alluga">
+            <h1>LA LLINGUA ALLUGA</h1>
+        </div>
+        <div class="buscador">
+            <input type="text" id="busqueda" placeholder="Buscar nel repositoriu...">
+            <button onclick="buscarPDF()">Buscar</button>
+        </div>
+    </header>
+
+   <nav class="menu-principal">
+        <div class="menu-item">
+            <button class="menu-btn">SOBRE EL PROYECTO</button>
+            <div class="submenu">
+                <a href="../materiales/autoria.html">Autoria</a>
+                <a href="#">TFA</a>
+            </div>
+        </div>
+        
+        <div class="menu-item">
+            <button class="menu-btn">REPERTORIO</button>
+            <div class="submenu">
+                <a href="../bloques/bloque1.html">Bloque 1: Gramática y Historia</a>
+                <a href="../bloques/bloque2.html">Bloque 2: Literatura</a>
+                <a href="../bloques/bloque3.html">Bloque 3: Dialectología</a>
+                <a href="../bloques/bloque4.html">Bloque 4: Lingüística</a>
+            </div>
+        </div>
+        
+        <div class="menu-item">
+            <button class="menu-btn">OTROS MATERIALES</button>
+            <div class="submenu">
+                <a href="#">Colaboraciones y comercio</a>
+            </div>
+        </div>
+        
+        <div class="menu-item">
+            <button class="menu-btn">RECURSOS DIGITALES</button>
+            <div class="submenu">
+                <a href="#">Vídeos</a>
+                <a href="#">Otros blogs</a>
+                <a href="#">Diccionarios</a>
+                <a href="#">Papers en institutos</a>
+                <a href="#">Páxines web internacionales</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="pagina-bloque">
+        <div class="cabecera-bloque">
+            <h2>Bloque 3: Dialectología y Toponimia</h2>
+            <p>Estudios sobre las variedades dialectales del asturiano y análisis de la toponimia asturiana.</p>
+        </div>
+        
+        <div id="contenedor-documentos" class="contenedor-documentos"></div>
+            <!-- Los PDFs se cargarán automáticamente aquí -->
+  
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                cargarBloque('bloque3');
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                cargarBloque('bloque2');
+            });
+        </script>
+    </main>
+
+    <!-- Pie de página igual que bloque1.html -->
+    <script src="../script.js"></script>
+</body>
+</html>
