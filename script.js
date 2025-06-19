@@ -1,20 +1,45 @@
 // Verificar carga de PDF.js
-if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
-    console.error('PDF.js no se cargó correctamente');
-    // Cargar manualmente si falla
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js';
-    script.onload = initPDFViewer;
-    document.head.appendChild(script);
-} else {
-    initPDFViewer();
+function loadPDFJS() {
+    return new Promise((resolve, reject) => {
+        if (typeof window['pdfjs-dist/build/pdf'] !== 'undefined') {
+            resolve(window['pdfjs-dist/build/pdf']);
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js';
+        
+        script.onload = () => {
+            if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
+                reject(new Error('PDF.js no se cargó correctamente'));
+                return;
+            }
+            resolve(window['pdfjs-dist/build/pdf']);
+        };
+        
+        script.onerror = () => {
+            reject(new Error('Error al cargar PDF.js'));
+        };
+        
+        document.head.appendChild(script);
+    });
 }
 
-function initPDFViewer() {
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+// Función principal
+async function initPDFViewer() {
+    let pdfjsLib;
+    
+    try {
+        pdfjsLib = await loadPDFJS();
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+    } catch (error) {
+        console.error('Error inicializando PDF.js:', error);
+        document.getElementById('contenedor-documentos').innerHTML = 
+            '<p class="error">Error al cargar el visor de PDF. Por favor recarga la página.</p>';
+        return;
+    }
 
-    // Documentos disponibles (versión simplificada)
+    // Documentos disponibles
     const documentos = [
         {
             nombre: "Xuegu animales espresión oral",
@@ -30,9 +55,7 @@ function initPDFViewer() {
         }
     ];
 
-    // Función principal mejorada
     async function mostrarMiniaturas(bloque) {
-        console.log(`Mostrando documentos para bloque: ${bloque}`);
         const contenedor = document.getElementById('contenedor-documentos');
         
         if (!contenedor) {
@@ -54,7 +77,6 @@ function initPDFViewer() {
             const card = document.createElement('div');
             card.className = 'doc-card';
             
-            // Vista previa del PDF
             const previewDiv = document.createElement('div');
             previewDiv.className = 'doc-preview';
             previewDiv.innerHTML = `
@@ -70,9 +92,15 @@ function initPDFViewer() {
             card.appendChild(previewDiv);
             contenedor.appendChild(card);
 
-            // Intento de generar miniatura
             try {
-                const pdf = await pdfjsLib.getDocument(doc.ruta).promise;
+                // Añadir timestamp para evitar caché
+                const pdfUrl = doc.ruta + '?t=' + new Date().getTime();
+                const pdf = await pdfjsLib.getDocument({
+                    url: pdfUrl,
+                    disableAutoFetch: true,
+                    disableStream: true
+                }).promise;
+                
                 const page = await pdf.getPage(1);
                 const viewport = page.getViewport({ scale: 0.35 });
                 
@@ -95,35 +123,32 @@ function initPDFViewer() {
                 console.error(`Error al generar miniatura para ${doc.nombre}:`, error);
                 const thumbContainer = document.getElementById(`thumb-${doc.archivo.replace('.pdf', '')}`);
                 if (thumbContainer) {
-                    thumbContainer.innerHTML = '<span class="error-text">Vista previa no disponible</span>';
+                    thumbContainer.innerHTML = `
+                        <div class="error-preview">
+                            <span class="error-text">Vista previa no disponible</span>
+                            <a href="${doc.ruta}" class="btn-descargar-alt" target="_blank">Descargar</a>
+                        </div>
+                    `;
                 }
             }
         }
     }
 
-    // Inicialización automática mejorada
+    // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM completamente cargado');
-        
-        // Determinar bloque actual
         const path = window.location.pathname;
         let bloqueActual = '';
         
         if (path.includes('bloque1')) bloqueActual = 'bloque1';
-        if (path.includes('bloque2')) bloqueActual = 'bloque2';
-        if (path.includes('bloque3')) bloqueActual = 'bloque3';
-        if (path.includes('bloque4')) bloqueActual = 'bloque4';
+        else if (path.includes('bloque2')) bloqueActual = 'bloque2';
+        else if (path.includes('bloque3')) bloqueActual = 'bloque3';
+        else if (path.includes('bloque4')) bloqueActual = 'bloque4';
         
         if (bloqueActual) {
-            console.log(`Inicializando bloque: ${bloqueActual}`);
             mostrarMiniaturas(bloqueActual);
-        } else {
-            console.log('Página principal detectada');
-            // Inicializar buscador o destacados si es necesario
         }
-        
-        // Verificar que todo funciona
-        console.log('Documentos disponibles:', documentos);
-        console.log('PDF.js cargado correctamente:', typeof pdfjsLib !== 'undefined');
     });
 }
+
+// Iniciar todo
+initPDFViewer();
