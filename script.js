@@ -33,18 +33,18 @@ function mostrarDocumentos(bloque) {
 
   const docs = documentos.filter(doc => doc.bloque === bloque);
   
-  contenedor.innerHTML = docs.map(doc => `
-    <div class="documento">
-      <div class="doc-icon">📄</div>
-      <div class="doc-info">
-        <h3>${doc.nombre}</h3>
-        <div class="doc-acciones">
-          <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
-          <a href="${doc.ruta}" download="${doc.archivo}" class="btn descargar-btn">Descargar</a>
-        </div>
+  contenedor.innerHTML = resultados.map(doc => `
+  <div class="documento">
+    <div class="doc-icon">📄</div>
+    <div class="doc-info">
+      <h3>${doc.nombre}</h3>
+      <div class="doc-acciones">
+        <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
+        <a href="${doc.ruta}" download class="btn descargar-btn">Descargar</a>
       </div>
     </div>
-  `).join('');
+  </div>
+`).join('');
 }
 
 // Inicialización
