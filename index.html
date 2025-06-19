@@ -6,13 +6,11 @@
     <title>LA LLINGUA ALLUGA - Repositoriu</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo-llingua.png">
-    <!-- En el <head> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
-
 </head>
 <body>
-   <header>
+    <header>
         <div class="logo-titulo">
             <a href="index.html" class="logo-link">
                 <img src="img/logo-llingua.png" alt="Logo Llingua Alluga">
@@ -25,7 +23,6 @@
         </div>
     </header>
 
-    <!-- Menú principal -->
     <nav class="menu-principal">
         <div class="menu-item">
             <button class="menu-btn">SOBRE EL PROYECTO</button>
@@ -38,10 +35,10 @@
         <div class="menu-item">
             <button class="menu-btn">REPERTORIO</button>
             <div class="submenu">
-                <a href="bloques/bloque1.html">Bloque 1: Gramática y Historia</a>
-                <a href="bloques/bloque2.html">Bloque 2: Literatura</a>
+                <a href="bloques/bloque1.html">Bloque 1: Comunicación oral</a>
+                <a href="bloques/bloque2.html">Bloque 2: Comunicación escrita</a>
                 <a href="bloques/bloque3.html">Bloque 3: Dialectología</a>
-                <a href="bloques/bloque4.html">Bloque 4: Lingüística</a>
+                <a href="bloques/bloque4.html">Bloque 4: Educación lliteraria</a>
             </div>
         </div>
         
@@ -51,8 +48,6 @@
                 <a href="#">Vídeos</a>
                 <a href="#">Otros blogs</a>
                 <a href="#">Diccionarios</a>
-                <a href="#">Proyectos de Investigación</a>
-                <a href="#">Páxines web internacionales</a>
             </div>
         </div>
     </nav>
@@ -76,7 +71,7 @@
                 </a>
                 <a href="bloques/bloque3.html" class="tarjeta-bloque bloque3">
                     <h3>Bloque 3</h3>
-                    <p>Comunicación escrita: escribir</p>
+                    <p>Dialectología y toponimia</p>
                 </a>
                 <a href="bloques/bloque4.html" class="tarjeta-bloque bloque4">
                     <h3>Bloque 4</h3>
@@ -97,16 +92,11 @@
         </section>
     </main>
 
-    <!-- Footer (se mantiene igual) -->
+    <footer>
+        <p>Repositoriu de la Llingua Alluga © 2025</p>
+        <p>Proyeutu desarrolláu pola comunidá asturiana</p>
+    </footer>
 
-    
-<!-- Por esto -->
-<script src="script.js" defer></script>  <!-- "defer" asegura que cargue después del PDF.js -->
-    <script>
-        // Inicialización específica para index.html
-        document.addEventListener('DOMContentLoaded', function() {
-            mostrarDestacados();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
