@@ -68,7 +68,7 @@ function initPDFViewer() {
                 </div>
                 <div class="doc-info">
                     <h3>${doc.nombre}</h3>
-                     <button class="btn-ver" onclick="verPDF('${doc.ruta}')">Ver en navegador</button>
+                    <button class="ver-btn" onclick="verPDF('${doc.ruta}')">Ver en navegador</button>
                     <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
                    
                 </div>
