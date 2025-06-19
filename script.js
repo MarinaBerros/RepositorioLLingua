@@ -63,8 +63,7 @@ function initPDFViewer() {
                 </div>
                 <div class="doc-info">
                     <h3>${doc.nombre}</h3>
-                    <a href="${baseURL + doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
-
+                    <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
                 </div>
             `;
             
@@ -73,10 +72,7 @@ function initPDFViewer() {
 
             // Intento de generar miniatura
             try {
-              const baseURL = "https://marinaberros.github.io/RepositorioLLingua/";
-              const fullPdfUrl = baseURL + doc.ruta;
-
-              const pdf = await pdfjsLib.getDocument(fullPdfUrl).promise;
+                const pdf = await pdfjsLib.getDocument(doc.ruta).promise;
                 const page = await pdf.getPage(1);
                 const viewport = page.getViewport({ scale: 0.35 });
                 
