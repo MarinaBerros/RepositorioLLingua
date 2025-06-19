@@ -26,8 +26,8 @@ function initPDFViewer() {
             nombre: "Madreñes - Comprensión y espresión escrita",
             archivo: "madrenes_comprension_expresion_escrita.pdf",
             bloque: "bloque3",
-            ruta: "https://marinaberros.github.io/RepositorioLLingua/pdfs/bloque3/madrenes_comprension_expresion_escrita.pdf"
-          }
+            ruta: "/RepositorioLLingua/pdfs/bloque3/madrenes_comprension_expresion_escrita.pdf"
+          },
 
     ];
 
