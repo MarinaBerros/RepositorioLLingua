@@ -73,8 +73,10 @@ function initPDFViewer() {
 
             // Intento de generar miniatura
             try {
-                const baseURL = "https://marinaberros.github.io/RepositorioLLingua/";
-                const pdf = await pdfjsLib.getDocument(`${baseURL}${doc.ruta}`).promise;
+              const baseURL = "https://marinaberros.github.io/RepositorioLLingua/";
+              const fullPdfUrl = baseURL + doc.ruta;
+
+              const pdf = await pdfjsLib.getDocument(fullPdfUrl).promise;
                 const page = await pdf.getPage(1);
                 const viewport = page.getViewport({ scale: 0.35 });
                 
