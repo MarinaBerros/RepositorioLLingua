@@ -453,6 +453,12 @@ footer p {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
+.doc-preview {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 /* Miniaturas PDF */
 .doc-thumbnail {
   width: 100%;
@@ -644,3 +650,88 @@ footer p {
   text-align: center;
 }
 
+
+
+/* Estilos para miniaturas de PDF */
+.contenedor-documentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.doc-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.doc-preview {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.doc-thumbnail {
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.doc-thumbnail canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.doc-info {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.doc-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.btn-descargar {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-descargar:hover {
+    background: #3e8e41;
+}
+
+/* Estados de carga */
+.cargando, .aviso {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.loading-text {
+    color: #666;
+}
+
+.error-text {
+    color: #e74c3c;
+}
