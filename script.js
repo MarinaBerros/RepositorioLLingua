@@ -66,7 +66,16 @@ function initPDFViewer() {
                     <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
                 </div>
             `;
-            
+             card.addEventListener('mouseenter', () => {
+              card.style.transform = 'scale(1.02)';
+              card.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+              });
+              
+              card.addEventListener('mouseleave', () => {
+                  card.style.transform = 'scale(1)';
+                  card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+              });
+                
             card.appendChild(previewDiv);
             contenedor.appendChild(card);
 
