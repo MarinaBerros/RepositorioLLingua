@@ -500,7 +500,16 @@ footer p {
     color: #e74c3c;
 }
 
+.pdf-embebido {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
 
+.pdf-controles {
+    margin-top: 10px;
+    text-align: center;
+}
 .btn-primary {
   background: #4CAF50;
   color: white;

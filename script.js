@@ -65,7 +65,8 @@ function initPDFViewer() {
                 <div class="doc-info">
                     <h3>${doc.nombre}</h3>
                     <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
-                    <button class="btn-ver" onclick="verPDF('${doc.ruta}')">Ver en navegador</button>
+                    <button class="btn-ver" onclick="verPDF('ruta.pdf', 'contenedor-pdf')">Ver aquí</button>
+                    <div id="contenedor-pdf"></div>
                 </div>
             `;
             
@@ -130,7 +131,51 @@ function initPDFViewer() {
     });
 }
 
-function verPDF(ruta) {
-    // Abre el PDF en una nueva pestaña con el visor nativo
-    window.open(ruta, '_blank');
+function verPDF(ruta, contenedorId) {
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor) return;
+
+    contenedor.innerHTML = `
+        <div class="pdf-embebido">
+            <canvas id="pdf-canvas"></canvas>
+            <div class="pdf-controles">
+                <button id="prev-page">Anterior</button>
+                <span id="page-num">1</span>/<span id="page-count">0</span>
+                <button id="next-page">Siguiente</button>
+            </div>
+        </div>
+    `;
+
+    // Código de renderizado (similar al anterior, pero sin modal)
+    pdfjsLib.getDocument(ruta).promise.then(pdf => {
+        const canvas = document.getElementById('pdf-canvas');
+        const ctx = canvas.getContext('2d');
+        let currentPage = 1;
+
+        function renderPage(pageNum) {
+            pdf.getPage(pageNum).then(page => {
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                });
+
+                document.getElementById('page-num').textContent = pageNum;
+            });
+        }
+
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (currentPage > 1) renderPage(--currentPage);
+        });
+
+        document.getElementById('next-page').addEventListener('click', () => {
+            if (currentPage < pdf.numPages) renderPage(++currentPage);
+        });
+
+        renderPage(1);
+        document.getElementById('page-count').textContent = pdf.numPages;
+    });
 }
