@@ -5,16 +5,15 @@ const config = {
   rama: 'main'
 };
 
-// Generador de URLs para GitHub con /raw/
 function generarURL(bloque, archivo) {
-  return `https://github.com/${config.usuario}/${config.repositorio}/raw/${config.rama}/pdfs/${bloque}/${archivo}`;
+  return `https://github.com/${config.usuario}/${config.repositorio}/raw/${config.rama}/pdfs/${bloque}/${archivo}?raw=true`;
 }
 
 // Base de datos de documentos
 const documentos = [
   {
     nombre: "Xuegu animales espresión oral",
-    archivo: "XUEGU_ANIMALES_ESPERSION_ORAL.pdf",
+    archivo: "Xuegu animales espresión oral.pdf",
     bloque: "bloque1",
     ruta: generarURL('bloque1', 'XUEGU_ANIMALES_ESPERSION_ORAL.pdf')
   },
