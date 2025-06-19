@@ -67,7 +67,6 @@ function initPDFViewer() {
                 </div>
             `;
             
-            
             card.appendChild(previewDiv);
             contenedor.appendChild(card);
 
