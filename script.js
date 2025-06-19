@@ -44,11 +44,32 @@ function mostrarDocumentos(bloque) {
       <div class="doc-info">
         <h3>${doc.nombre}</h3>
         <div class="doc-acciones">
-          <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Ver / Descargar</a>
+          <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Descargar</a>
+          <button onclick="mostrarPDF('${doc.ruta}')" class="btn ver-btn">Ver en página</button>
         </div>
+        <div id="visor-${doc.archivo.replace('.pdf', '')}" class="pdf-viewer-container"></div>
       </div>
     </div>
   `).join('');
+}
+
+function mostrarPDF(pdfUrl) {
+  // Crear contenedor del visor
+  const viewerContainer = document.createElement('div');
+  viewerContainer.className = 'pdf-viewer-modal';
+  viewerContainer.innerHTML = `
+    <div class="pdf-viewer-content">
+      <button class="close-btn" onclick="this.parentElement.parentElement.remove()">×</button>
+      <iframe 
+        src="https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfUrl)}" 
+        width="100%" 
+        height="90%"
+        style="border: none;">
+      </iframe>
+    </div>
+  `;
+  
+  document.body.appendChild(viewerContainer);
 }
 
 // Mostrar documentos destacados en la página principal
