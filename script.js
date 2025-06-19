@@ -9,7 +9,6 @@ function generarURL(bloque, archivo) {
   return `https://github.com/${config.usuario}/${config.repositorio}/raw/${config.rama}/pdfs/${bloque}/${archivo}`;
 }
 
-
 // Base de datos de documentos
 const documentos = [
   {
@@ -39,8 +38,8 @@ function mostrarDocumentos(bloque) {
     <div class="doc-info">
       <h3>${doc.nombre}</h3>
       <div class="doc-acciones">
-        <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
-        <a href="${doc.ruta}" download class="btn descargar-btn">Descargar</a>
+        <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Descargar</a>
+        
       </div>
     </div>
   </div>
