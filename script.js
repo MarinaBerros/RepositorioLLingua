@@ -5,10 +5,10 @@ const config = {
   rama: 'main'                     // Rama donde están los PDFs (main o gh-pages)
 };
 
-// Generador de URLs para GitHub Raw
 function generarURL(bloque, archivo) {
-  return `https://raw.githubusercontent.com/${config.usuario}/${config.repositorio}/${config.rama}/pdfs/${bloque}/${archivo}`;
+  return `https://github.com/${config.usuario}/${config.repositorio}/raw/${config.rama}/pdfs/${bloque}/${archivo}`;
 }
+
 
 // Base de datos de documentos
 const documentos = [
@@ -59,6 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
     buscador.addEventListener('input', buscarPDF);
   }
 });
+function descargarArchivo(url) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = '';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
 function buscarPDF() {
   const termino = document.getElementById("busqueda").value.toLowerCase().trim();
@@ -85,7 +93,7 @@ function buscarPDF() {
         <h3>${doc.nombre}</h3>
         <div class="doc-acciones">
           <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
-          <a href="${doc.ruta}" download="${doc.archivo}" class="btn descargar-btn">Descargar</a>
+          <a href=\"#\" onclick=\"descargarArchivo('${doc.ruta}')\" class=\"btn descargar-btn\">Descargar</a>
         </div>
       </div>
     </div>
@@ -100,3 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
     buscador.addEventListener("input", buscarPDF);
   }
 });
+
+
+
