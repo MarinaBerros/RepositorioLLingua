@@ -65,6 +65,7 @@ function initPDFViewer() {
                 <div class="doc-info">
                     <h3>${doc.nombre}</h3>
                     <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar PDF</a>
+                    <button class="btn-ver" onclick="verPDF('${doc.ruta}')">Ver en navegador</button>
                 </div>
             `;
             
@@ -127,4 +128,9 @@ function initPDFViewer() {
         console.log('Documentos disponibles:', documentos);
         console.log('PDF.js cargado correctamente:', typeof pdfjsLib !== 'undefined');
     });
+}
+
+function verPDF(ruta) {
+    // Abre el PDF en una nueva pestaña con el visor nativo
+    window.open(ruta, '_blank');
 }
