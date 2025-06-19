@@ -1,10 +1,11 @@
 // Configuración base - ¡REEMPLAZA ESTOS VALORES!
 const config = {
-  usuario: 'MarinaBerros',      // Tu nombre de usuario de GitHub
-  repositorio: 'RepositorioLlingua',    // Nombre exacto del repositorio
-  rama: 'main'                     // Rama donde están los PDFs (main o gh-pages)
+  usuario: 'MarinaBerros',
+  repositorio: 'RepositorioLlingua',
+  rama: 'main'
 };
 
+// Generador de URLs para GitHub con /raw/
 function generarURL(bloque, archivo) {
   return `https://github.com/${config.usuario}/${config.repositorio}/raw/${config.rama}/pdfs/${bloque}/${archivo}`;
 }
@@ -31,42 +32,21 @@ function mostrarDocumentos(bloque) {
   if (!contenedor) return;
 
   const docs = documentos.filter(doc => doc.bloque === bloque);
-  
-  contenedor.innerHTML = resultados.map(doc => `
-  <div class="documento">
-    <div class="doc-icon">📄</div>
-    <div class="doc-info">
-      <h3>${doc.nombre}</h3>
-      <div class="doc-acciones">
-        <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Descargar</a>
-        
+
+  contenedor.innerHTML = docs.map(doc => `
+    <div class="documento">
+      <div class="doc-icon">📄</div>
+      <div class="doc-info">
+        <h3>${doc.nombre}</h3>
+        <div class="doc-acciones">
+          <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Ver / Descargar</a>
+        </div>
       </div>
     </div>
-  </div>
-`).join('');
+  `).join('');
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', function() {
-  // Cargar documentos según la página
-  if (window.location.pathname.includes('bloque1')) mostrarDocumentos('bloque1');
-  if (window.location.pathname.includes('bloque3')) mostrarDocumentos('bloque3');
-
-  // Activar búsqueda en tiempo real
-  const buscador = document.getElementById('busqueda');
-  if (buscador) {
-    buscador.addEventListener('input', buscarPDF);
-  }
-});
-function descargarArchivo(url) {
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = '';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
+// Buscador
 function buscarPDF() {
   const termino = document.getElementById("busqueda").value.toLowerCase().trim();
   const contenedor = document.getElementById("resultados-busqueda");
@@ -91,22 +71,17 @@ function buscarPDF() {
       <div class="doc-info">
         <h3>${doc.nombre}</h3>
         <div class="doc-acciones">
-          <a href="${doc.ruta}" target="_blank" class="btn ver-btn">Ver</a>
-          <a href=\"#\" onclick=\"descargarArchivo('${doc.ruta}')\" class=\"btn descargar-btn\">Descargar</a>
+          <a href="${doc.ruta}" target="_blank" class="btn descargar-btn">Ver / Descargar</a>
         </div>
       </div>
     </div>
   `).join('');
 }
 
-
-// ✅ Conecta el buscador en cuanto cargue la página
+// Activar buscador en tiempo real
 document.addEventListener('DOMContentLoaded', function () {
   const buscador = document.getElementById("busqueda");
   if (buscador) {
     buscador.addEventListener("input", buscarPDF);
   }
 });
-
-
-
