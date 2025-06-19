@@ -192,6 +192,241 @@ main {
   font-size: 1.1rem;
   max-width: 800px;
 }
+.documento {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+}
+
+.doc-icon {
+  font-size: 2rem;
+}
+
+.doc-info {
+  flex: 1;
+}
+
+.doc-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.doc-acciones {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.ver-btn {
+  background: #3498db;
+  color: white;
+}
+
+.descargar-btn {
+  background: #2ecc71;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Página principal */
+.bienvenida {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.bienvenida h2 {
+  font-size: 1.8rem;
+  color: var(--color-primario);
+  margin-bottom: 1rem;
+}
+
+.bienvenida p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Acceso rápido */
+.acceso-rapido {
+  margin-bottom: 3rem;
+}
+
+.acceso-rapido h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-primario);
+}
+
+.grid-bloques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.tarjeta-bloque {
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tarjeta-bloque:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.tarjeta-bloque h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta-bloque p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.bloque1 { background-color: var(--color-terciario); }
+.bloque2 { background-color: var(--color-secundario); }
+.bloque3 { background-color: #2ecc71; }
+.bloque4 { background-color: #9b59b6; }
+
+/* Pie de página */
+footer {
+  background-color: var(--color-primario);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+footer p {
+  margin: 0.3rem 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo-titulo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu-principal {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .menu-item {
+    margin: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .menu-btn {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  .submenu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .pagina-bloque {
+    padding: 1.5rem;
+  }
+
+  .grid-bloques {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resultados-busqueda {
+  max-width: 900px;
+  margin: 1rem auto 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Estilos para el visor de PDF */
+.pdf-viewer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-viewer-content {
+  background: white;
+  width: 90%;
+  height: 90%;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Contenedor de documentos estilo mosaico */
+.document-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
 /* Estilos para miniaturas de PDF */
 .contenedor-documentos {
     display: grid;
@@ -245,6 +480,22 @@ main {
     font-size: 1.1rem;
     color: #333;
 }
+.doc-title {
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+
+.doc-actions {
+  display: flex;
+  gap: 10px;
+}
+.doc-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: #333;
+}
 
 .btn-descargar {
     display: inline-block;
@@ -275,3 +526,116 @@ main {
 .error-text {
     color: #e74c3c;
 }
+
+btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.btn-primary {
+  background: #4CAF50;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #3e8e41;
+}
+
+.btn-secondary {
+  background: #f1f1f1;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #ddd;
+}
+
+pdf-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: #333;
+}
+
+
+/* Estilos para estados de carga */
+.loading-state, .empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.thumbnail-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #4CAF50;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-state {
+    padding: 1.5rem;
+    text-align: center;
+    color: #e74c3c;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    justify-content: center;
+}
+
+.error-state .btn-descargar {
+    background: #e74c3c;
+}
+
+.error-state .btn-descargar:hover {
+    background: #c0392b;
+}
+
+
