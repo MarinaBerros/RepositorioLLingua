@@ -20,7 +20,7 @@ function cargarHeader() {
                     type="text" 
                     id="input-busqueda" 
                     class="buscador"
-                    placeholder="Buscar documentos..." 
+                    placeholder="Guetar documentos..." 
                     autocomplete="off"
                 >
                 <button id="btn-buscar">
@@ -46,7 +46,7 @@ function cargarHeader() {
         </div>
 
         <div class="menu-item">
-            <button class="menu-btn">SOBRE EL PROYECTO</button>
+            <button class="menu-btn">SOBRE'L PROYECTU</button>
             <div class="submenu">
                 <a href="${basePath}proyecto/autoria.html">Autoria</a>
                 <a href="${basePath}proyecto/TFG.html">TFG</a>
@@ -54,7 +54,7 @@ function cargarHeader() {
         </div>
         
         <div class="menu-item">
-            <button class="menu-btn">RECURSOS DIGITALES</button>
+            <button class="menu-btn">RECURSOS DIXITALES</button>
             <div class="submenu">
                 <a href="${basePath}recursos/videos.html">Vídeos</a>
                 <a href="${basePath}recursos/blogs.html">Otros blogs</a>

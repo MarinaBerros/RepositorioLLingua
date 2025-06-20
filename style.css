@@ -869,3 +869,47 @@ blockquote {
 
 }
 
+.grid-diccionarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.diccionario-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.diccionario-card h3 {
+  font-size: 1.2rem;
+  color: var(--color-primario);
+  margin-bottom: 0.5rem;
+}
+
+.diccionario-card p {
+  font-size: 0.95rem;
+  color: #555;
+  flex: 1;
+}
+
+.consultar-btn {
+  background-color: var(--color-terciario);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.consultar-btn:hover {
+  background-color: #2b7ac9;
+}
