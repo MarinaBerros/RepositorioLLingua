@@ -470,6 +470,11 @@ footer p {
     transition: background 0.3s;
 }
 
+.btn-descargar:hover {
+    background: #3e8e41;
+}
+
+
 .ver-btn {
     display: inline-block;
     padding: 8px 15px;
@@ -481,10 +486,10 @@ footer p {
     transition: background 0.3s;
 }
 
-
-.btn-descargar:hover {
+.ver-btn:hover {
     background: #3e8e41;
 }
+
 
 /* Estados de carga */
 .cargando, .aviso {
