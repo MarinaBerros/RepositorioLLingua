@@ -241,7 +241,7 @@ function mostrarResultados(resultados) {
     contenedor.innerHTML = '';
 
     if (resultados.length === 0) {
-        contenedor.innerHTML = '<p class="aviso">No se encontraron documentos</p>';
+        contenedor.innerHTML = '<p class="mensaje-no-resultados">No se encontraron documentos</p>';
         return;
     }
 

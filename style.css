@@ -218,12 +218,21 @@ h1 {
   background: #e9ecef;
 }
 
-/* Mensajes */
-.aviso {
-  text-align: center;
-  color: #666;
-  padding: 20px;
-  font-size: 15px;
+/* Ejemplo de estilos mejorados */
+.buscador {
+  background-color: white;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.mensaje-no-resultados {
+  color: #d9534f; /* Rojo suave */
+  font-weight: bold;
+}
+
+.buscando {
+  color: #5bc0de; /* Azul claro */
 }
 
 /* Menú principal */

@@ -25,6 +25,7 @@
             <input 
             type="text" 
             id="input-busqueda" 
+            class="buscador"
             placeholder="Buscar documentos..." 
             autocomplete="off"
             >
@@ -117,5 +118,14 @@
     </footer>
 
     <script src="script.js"></script>
+     <script>
+        document.querySelector('.buscador').addEventListener('input', function() {
+            this.style.backgroundColor = '#fff8e1'; // Amarillo claro al escribir
+            // Opcional: Resetear el color si el campo está vacío
+            if (this.value === '') {
+                this.style.backgroundColor = 'white';
+            }
+        });
+    </script>
 </body>
 </html>
