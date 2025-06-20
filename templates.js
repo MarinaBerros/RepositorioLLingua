@@ -10,15 +10,8 @@ function cargarHeader() {
         </div>
         </header>
          <nav class="menu-principal">
-        <div class="menu-item">
-                <button class="menu-btn">SOBRE EL PROYECTO</button>
-                <div class="submenu">
-                    <a href="materiales/autoria.html">Autoria</a>
-                    <a href="#">TFG</a>
-                </div>
-            </div>
-            
-            <div class="menu-item">
+
+           <div class="menu-item">
                 <button class="menu-btn">BLOQUES</button>
                 <div class="submenu">
                     <a href="bloques/bloque1.html">Bloque 1: Comunicación oral</a>
@@ -27,6 +20,16 @@ function cargarHeader() {
                     <a href="bloques/bloque4.html">Bloque 4: Educación lliteraria</a>
                 </div>
             </div>
+            
+        <div class="menu-item">
+                <button class="menu-btn">SOBRE EL PROYECTO</button>
+                <div class="submenu">
+                    <a href="materiales/autoria.html">Autoria</a>
+                    <a href="#">TFG</a>
+                </div>
+            </div>
+            
+          
             
             <div class="menu-item">
                 <button class="menu-btn">RECURSOS DIGITALES</button>
