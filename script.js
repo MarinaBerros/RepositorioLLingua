@@ -1,7 +1,10 @@
  // script.js - Versión corregida
+// js/script.js
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Verifica si el elemento existe antes de usarlo
-    const buscador = document.querySelector('.buscador');
+    // Tu código del buscador aquí
+    //const buscador = document.querySelector('.buscador');
+    const inputBusqueda = document.getElementById('input-busqueda');
     
     if (buscador) {
         buscador.addEventListener('input', function() {
@@ -9,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Añade más verificaciones para otros elementos
-    const otroElemento = document.querySelector('.clase-inexistente');
-    if (otroElemento) {
-        // Tu código aquí
+    if (inputBusqueda) {
+        inputBusqueda.addEventListener('input', function() {
+            // Lógica de búsqueda aquí
+        });
     }
-}); // Verificar carga de PDF.js
+}); 
+// Verificar carga de PDF.js
 if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
     console.error('PDF.js no se cargó correctamente');
     // Cargar manualmente si falla

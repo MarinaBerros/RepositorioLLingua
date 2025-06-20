@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloque 2: Literatura - LA LLINGUA ALLUGA</title>
-    <link rel="stylesheet" href="https://MarinaBerros/RepositorioLLingua/css/style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
+
+    
 </head>
 <body>
     <!-- Contenedor para el header -->
@@ -26,5 +28,19 @@
     <!-- Carga los scripts con rutas relativas correctas -->
     <script src="../templates.js"></script>
     <script src="../script.js"></script>
+    <script>
+        // Código mínimo garantizado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página cargada correctamente');
+            
+            // Efecto buscador básico
+            const buscador = document.querySelector('.buscador');
+            if (buscador) {
+                buscador.addEventListener('input', function() {
+                    this.style.backgroundColor = this.value ? '#fff8e1' : 'white';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
