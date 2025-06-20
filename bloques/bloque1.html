@@ -10,52 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo-titulo">
-            <a href="../index.html" class="logo-link">
-                <img src="../img/logo-llingua.png" alt="Logo Llingua Alluga">
-                <h1>LA LLINGUA ALLUGA</h1>
-            </a>
-        </div>
-        <div class="buscador">
-            <input type="text" id="busqueda" placeholder="Buscar nel repositoriu...">
-            <button onclick="buscarPDF()">Buscar</button>
-        </div>
-    </header>
-
-    <nav class="menu-principal">
-        <div class="menu-item">
-            <button class="menu-btn">SOBRE EL PROYECTO</button>
-            <div class="submenu">
-                <a href="materiales/autoria.html">Autoria</a>
-                <a href="#">TFG</a>
-            </div>
-        </div>
-        
-        <div class="menu-item">
-            <button class="menu-btn">REPERTORIO</button>
-            <div class="submenu">
-                <a href="bloques/bloque1.html">Bloque 1: Comunicación oral</a>
-                <a href="bloques/bloque2.html">Bloque 2: Comunicación escrita</a>
-                <a href="bloques/bloque3.html">Bloque 3: Dialectología</a>
-                <a href="bloques/bloque4.html">Bloque 4: Educación lliteraria</a>
-            </div>
-        </div>
-        
-        <div class="menu-item">
-            <button class="menu-btn">RECURSOS DIGITALES</button>
-            <div class="submenu">
-                <a href="#">Vídeos</a>
-                <a href="#">Otros blogs</a>
-                <a href="#">Diccionarios</a>
-            </div>
-        </div>
-    </nav>
+    <div id="header-container"></div>
     
-
     <main class="pagina-bloque">
         <div class="cabecera-bloque">
-            <h2>Comunicación oral: falar y escuchar</h2>
+            <h2>Bloque 1 comunicación oral: falar y escuchar</h2>
             <p>Actividaes pa desenvolver la comprensión y espresión oral n'asturianu</p>
         </div>
 
@@ -67,6 +26,7 @@
         <p>Proyeutu desarrolláu pola comunidá asturiana</p>
     </footer>
 
+    <script src="../templates.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
