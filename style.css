@@ -459,36 +459,9 @@ footer p {
   gap: 10px;
 }
 
-.btn-descargar {
-    display: inline-block;
-    padding: 8px 15px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-}
-
-.btn-descargar:hover {
-    background: #3e8e41;
-}
 
 
-.ver-btn {
-    display: inline-block;
-    padding: 8px 15px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-}
 
-.ver-btn:hover {
-    background: #3e8e41;
-}
 
 
 /* Estados de carga */
@@ -629,8 +602,6 @@ footer p {
     height: 100%;
 }
 
-
-
 .btn-descargar {
     display: inline-block;
     padding: 8px 15px;
@@ -643,6 +614,21 @@ footer p {
 }
 
 .btn-descargar:hover {
+    background: #3e8e41;
+}
+
+.ver-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.ver-btn:hover {
     background: #3e8e41;
 }
 
@@ -702,14 +688,7 @@ footer p {
     justify-content: center;
 }
 
-/*.error-state .btn-descargar {
-    background: #e74c3c;
-}
 
-.error-state .btn-descargar:hover {
-    background: #c0392b;
-}
-*/
 /* Mejoras para las tarjetas */
 
 .doc-card:hover {
