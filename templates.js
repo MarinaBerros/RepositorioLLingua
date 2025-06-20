@@ -67,7 +67,7 @@ function cargarFooter() {
     return `
         <footer>
         <p>Repositoriu de la Llingua Alluga © 2025</p>
-        <p>Proyeutu desarrolláu pola comunidá asturiana</p>
+        <p>Marina Berros González</p>
        </footer>
 
     `;
