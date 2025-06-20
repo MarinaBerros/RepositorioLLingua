@@ -3,7 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Tu código del buscador aquí
-    //const buscador = document.querySelector('.buscador');
+    const buscador = document.querySelector('.buscador');
     const inputBusqueda = document.getElementById('input-busqueda');
     
     if (buscador) {
@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Lógica de búsqueda aquí
         });
     }
-}); 
-// Verificar carga de PDF.js
+}); // Verificar carga de PDF.js
 if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
     console.error('PDF.js no se cargó correctamente');
     // Cargar manualmente si falla
