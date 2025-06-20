@@ -127,7 +127,7 @@ h1 {
   width: 100%;
   max-height: 250px;
   overflow-y: auto;
-  background: rgb(243, 0, 0);
+  background: rgb(19, 155, 209);
   border: 1px solid #e0e0e0;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -145,7 +145,7 @@ h1 {
 }
 
 .sugerencia-item:hover {
-  background: #3272b3;
+  background: #2f0ec4;
 }
 
 .sugerencia-item:last-child {
