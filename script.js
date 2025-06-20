@@ -207,8 +207,8 @@ function mostrarResultados(resultados) {
         item.innerHTML = `
             <span class="item-texto">${doc.nombre}</span>
             <div class="botones-mini">
-                <button class="btn-mini btn-ver" onclick="window.open('${doc.ruta}', '_blank')">Ver</button>
-                <a href="${doc.ruta}" download class="btn-mini btn-descargar">Descargar</a>
+                <button class="btn-ver-mini" onclick="window.open('${doc.ruta}', '_blank')">Ver</button>
+                <a href="${doc.ruta}" download class="btn-descargar-mini">Descargar</a>
             </div>
         `;
         contenedor.appendChild(item);
