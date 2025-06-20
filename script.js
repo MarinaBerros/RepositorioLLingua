@@ -223,4 +223,31 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// templates.js
+function cargarHeader() {
+    document.write(`
+        <header>
+            <div class="logo-titulo">
+                <a href="index.html" class="logo-link">
+                    <img src="img/logo-llingua.png" alt="Logo">
+                    <h1>LA LLINGUA ALLUGA</h1>
+                </a>
+            </div>
+            <div class="buscador">
+                <input type="text" id="busqueda" placeholder="Buscar...">
+                <button onclick="buscarPDF()">Buscar</button>
+            </div>
+        </header>
+        <nav class="menu-principal">
+            <!-- Menú aquí -->
+        </nav>
+    `);
+}
 
+function cargarFooter() {
+    document.write(`
+        <footer>
+            <p>© 2025 LA LLINGUA ALLUGA</p>
+        </footer>
+    `);
+}
