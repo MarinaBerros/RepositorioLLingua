@@ -19,26 +19,26 @@
             </a>
         </div>
 
-        <!-- Reemplaza tu buscador actual con este -->
+       <!-- Reemplaza todo el bloque del buscador con esto -->
         <div class="buscador-avanzado">
-            <div class="search-box">
-                <input 
-                    type="text" 
-                    id="input-busqueda" 
-                    placeholder="Guetar documentos..." 
-                    autocomplete="off"
-                >
-                <button id="btn-buscar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#555">
-                        <path d="M11 3a8 8 0 0 1 6.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 1 1 11 3z"/>
-                    </svg>
-                </button>
-            </div>
+        <div class="search-box">
+            <input 
+            type="text" 
+            id="input-busqueda" 
+            placeholder="Buscar documentos..." 
+            autocomplete="off"
+            >
+            <button id="btn-buscar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#555">
+                <path d="M11 3a8 8 0 0 1 6.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 1 1 11 3z"/>
+            </svg>
+            </button>
+        </div>
+        <div id="sugerencias" class="sugerencias-container"></div>
         </div>
 
-            <!-- Contenedor de resultados (debe estar en tu HTML) -->
-            <div id="resultados-busqueda" class="lista-minimalista"></div>
-
+        <!-- Este div debe estar FUERA del header -->
+        <div id="resultados-busqueda" class="lista-minimalista"></div>
                 
         </header>
 

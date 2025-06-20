@@ -152,44 +152,88 @@ function initPDFViewer() {
     });
 }
 
-// Buscar documentos
+// Función de búsqueda principal
 function buscarDocumentos(termino) {
-    return documentos.filter(doc => 
-        doc.nombre.toLowerCase().includes(termino) || 
-        doc.bloque.toLowerCase().includes(termino)
-    );
+  termino = termino.toLowerCase();
+  return documentos.filter(doc => 
+    doc.nombre.toLowerCase().includes(termino) || 
+    doc.bloque.toLowerCase().includes(termino)
+  );
 }
 
-    // Mostrar sugerencias
-    document.getElementById('input-busqueda').addEventListener('input', function() {
-        const termino = this.value.toLowerCase();
-        const sugerenciasBox = document.getElementById('sugerencias');
-        sugerenciasBox.innerHTML = '';
+// Mostrar resultados
+function mostrarResultados(resultados) {
+  const contenedor = document.getElementById('resultados-busqueda');
+  contenedor.innerHTML = '';
 
-        if (termino.length < 2) {
-            sugerenciasBox.style.display = 'none';
-            return;
-        }
+  if (resultados.length === 0) {
+    contenedor.innerHTML = '<p class="aviso">No se encontraron documentos</p>';
+    return;
+  }
 
-        const resultados = buscarDocumentos(termino).slice(0, 5);
-        
-        if (resultados.length > 0) {
-            resultados.forEach(doc => {
-                const item = document.createElement('div');
-                item.className = 'sugerencia-item';
-                item.textContent = doc.nombre;
-                item.addEventListener('click', () => {
-                    document.getElementById('input-busqueda').value = doc.nombre;
-                    mostrarResultados([doc]);
-                    sugerenciasBox.style.display = 'none';
-                });
-                sugerenciasBox.appendChild(item);
-            });
-            sugerenciasBox.style.display = 'block';
-        } else {
-            sugerenciasBox.style.display = 'none';
-        }
-    });
+  resultados.forEach(doc => {
+    const item = document.createElement('div');
+    item.className = 'item-lista';
+    item.innerHTML = `
+      <span class="item-texto">${doc.nombre}</span>
+      <div class="botones-mini">
+        <button class="btn-ver-mini" onclick="verPDF('${doc.ruta}')">Ver</button>
+        <a href="${doc.ruta}" download class="btn-descargar-mini">Descargar</a>
+      </div>
+    `;
+    contenedor.appendChild(item);
+  });
+}
+
+// Eventos del buscador
+document.addEventListener('DOMContentLoaded', function() {
+  const inputBusqueda = document.getElementById('input-busqueda');
+  const btnBuscar = document.getElementById('btn-buscar');
+  const sugerenciasBox = document.getElementById('sugerencias');
+
+  // Buscar al escribir
+  inputBusqueda.addEventListener('input', function() {
+    const termino = this.value.trim();
+    sugerenciasBox.innerHTML = '';
+
+    if (termino.length < 2) {
+      sugerenciasBox.style.display = 'none';
+      return;
+    }
+
+    const sugerencias = buscarDocumentos(termino).slice(0, 5);
+    
+    if (sugerencias.length > 0) {
+      sugerencias.forEach(doc => {
+        const item = document.createElement('div');
+        item.className = 'sugerencia-item';
+        item.textContent = doc.nombre;
+        item.addEventListener('click', () => {
+          inputBusqueda.value = doc.nombre;
+          mostrarResultados([doc]);
+          sugerenciasBox.style.display = 'none';
+        });
+        sugerenciasBox.appendChild(item);
+      });
+      sugerenciasBox.style.display = 'block';
+    } else {
+      sugerenciasBox.style.display = 'none';
+    }
+  });
+
+  // Buscar al hacer clic
+  btnBuscar.addEventListener('click', function() {
+    const termino = inputBusqueda.value.trim();
+    mostrarResultados(buscarDocumentos(termino));
+  });
+
+  // Cerrar sugerencias al hacer clic fuera
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.buscador-avanzado')) {
+      sugerenciasBox.style.display = 'none';
+    }
+  });
+});
 
 // Función para mostrar resultados en formato lista
 function mostrarResultados(resultados) {
