@@ -191,47 +191,64 @@ document.getElementById('input-busqueda').addEventListener('input', function() {
     }
 });
 
-// Mostrar resultados
+// Función para mostrar resultados en formato lista
 function mostrarResultados(resultados) {
     const contenedor = document.getElementById('resultados-busqueda');
     contenedor.innerHTML = '';
 
     if (resultados.length === 0) {
-        contenedor.innerHTML = '<p class="aviso">No se encontraron resultados</p>';
+        contenedor.innerHTML = '<p class="no-resultados">No se encontraron documentos</p>';
         return;
     }
 
     resultados.forEach(doc => {
-        const card = document.createElement('div');
-        card.className = 'doc-card';
-        card.innerHTML = `
-            <div class="doc-preview">
-                <div class="doc-thumbnail">
-                    <span>📄 ${doc.bloque}</span>
-                </div>
-                <div class="doc-info">
-                    <h3>${doc.nombre}</h3>
-                    <div class="doc-botones">
-                        <a href="${doc.ruta}" class="btn-ver" target="_blank">Ver</a>
-                        <a href="${doc.ruta}" class="btn-descargar" download>Descargar</a>
-                    </div>
-                </div>
+        const item = document.createElement('div');
+        item.className = 'resultado-item';
+        item.innerHTML = `
+            <div class="resultado-info">
+                <div class="resultado-titulo">${doc.nombre}</div>
+                <div class="resultado-meta">Bloque ${doc.bloque.replace('bloque', '')}</div>
+            </div>
+            <div class="resultado-acciones">
+                <button class="btn-accion btn-ver" onclick="verPDF('${doc.ruta}')">Ver</button>
+                <a href="${doc.ruta}" download class="btn-accion btn-descargar">Descargar</a>
             </div>
         `;
-        contenedor.appendChild(card);
+        contenedor.appendChild(item);
     });
 }
 
-// Botón de búsqueda
-document.getElementById('btn-buscar').addEventListener('click', () => {
-    const termino = document.getElementById('input-busqueda').value;
-    mostrarResultados(buscarDocumentos(termino));
-});
+// Evento de búsqueda mejorado
+document.getElementById('input-busqueda').addEventListener('input', function() {
+    const termino = this.value.trim().toLowerCase();
+    const sugerenciasBox = document.getElementById('sugerencias');
+    
+    sugerenciasBox.innerHTML = '';
+    if (termino.length < 2) {
+        sugerenciasBox.style.display = 'none';
+        return;
+    }
 
-// Cerrar sugerencias al hacer clic fuera
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.buscador-container')) {
-        document.getElementById('sugerencias').style.display = 'none';
+    const sugerencias = buscarDocumentos(termino).slice(0, 5);
+    
+    if (sugerencias.length > 0) {
+        sugerencias.forEach(doc => {
+            const item = document.createElement('div');
+            item.className = 'sugerencia-item';
+            item.innerHTML = `
+                <div>${doc.nombre}</div>
+                <small class="text-muted">Bloque ${doc.bloque.replace('bloque', '')}</small>
+            `;
+            item.addEventListener('click', () => {
+                document.getElementById('input-busqueda').value = doc.nombre;
+                mostrarResultados([doc]);
+                sugerenciasBox.style.display = 'none';
+            });
+            sugerenciasBox.appendChild(item);
+        });
+        sugerenciasBox.style.display = 'block';
+    } else {
+        sugerenciasBox.style.display = 'none';
     }
 });
 
