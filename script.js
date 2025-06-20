@@ -136,3 +136,91 @@ function initPDFViewer() {
 }
 
 
+// Función principal de búsqueda
+function buscarPDF() {
+    const query = document.getElementById('busqueda').value.toLowerCase();
+    const resultados = document.getElementById('resultados-busqueda');
+    resultados.innerHTML = '';
+
+    if (query.trim() === '') {
+        resultados.innerHTML = '<p class="aviso">Ingresa un término de búsqueda</p>';
+        return;
+    }
+
+    const encontrados = documentos.filter(doc => 
+        doc.nombre.toLowerCase().includes(query) || 
+        doc.bloque.toLowerCase().includes(query) ||
+        doc.ruta.toLowerCase().includes(query)
+    );
+
+    if (encontrados.length === 0) {
+        resultados.innerHTML = '<p class="aviso">No se encontraron resultados</p>';
+        return;
+    }
+
+    // Mostrar resultados
+    encontrados.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doc-card resultado-busqueda';
+        card.innerHTML = `
+            <div class="doc-preview">
+                <div class="doc-thumbnail" id="thumb-result-${doc.archivo.replace('.pdf', '')}">
+                    <span class="loading-text">Cargando...</span>
+                </div>
+                <div class="doc-info">
+                    <h3>${doc.nombre}</h3>
+                    <p class="bloque-info">Bloque ${doc.bloque.replace('bloque', '')}</p>
+                    <div class="doc-botones">
+                        <button class="btn-ver" onclick="abrirVisorPDF('${doc.ruta}')">Ver</button>
+                        <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        resultados.appendChild(card);
+        generarMiniatura(doc, `thumb-result-${doc.archivo.replace('.pdf', '')}`);
+    });
+}
+
+// Autocompletado (sugerencias)
+document.getElementById('busqueda').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+
+    if (query.length < 2) {
+        suggestions.style.display = 'none';
+        return;
+    }
+
+    const sugerencias = documentos.filter(doc => 
+        doc.nombre.toLowerCase().includes(query) || 
+        doc.bloque.toLowerCase().includes(query)
+    ).slice(0, 5);
+
+    if (sugerencias.length > 0) {
+        sugerencias.forEach(doc => {
+            const item = document.createElement('div');
+            item.className = 'suggestion-item';
+            item.textContent = doc.nombre;
+            item.addEventListener('click', () => {
+                document.getElementById('busqueda').value = doc.nombre;
+                suggestions.style.display = 'none';
+                buscarPDF();
+            });
+            suggestions.appendChild(item);
+        });
+        suggestions.style.display = 'block';
+    } else {
+        suggestions.style.display = 'none';
+    }
+});
+
+// Cerrar sugerencias al hacer clic fuera
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.buscador-container')) {
+        document.getElementById('suggestions').style.display = 'none';
+    }
+});
+
+

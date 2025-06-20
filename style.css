@@ -98,6 +98,75 @@ h1 {
   background-color: #c0392b;
 }
 
+/* Contenedor principal */
+.buscador-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Caja del buscador */
+.buscador-box {
+    display: flex;
+    align-items: center;
+    border: 2px solid #3498db;
+    border-radius: 30px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#busqueda {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.btn-buscar {
+    background: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-buscar:hover {
+    background: #2980b9;
+}
+
+/* Sugerencias */
+.suggestions-box {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+/* Efecto de enfoque */
+#busqueda:focus {
+    border-color: #2980b9;
+}
+
 /* Menú principal */
 .menu-principal {
   display: flex;
@@ -408,7 +477,6 @@ canvas {
 
 
 
-
 /* Estados de carga */
 .cargando, .aviso {
     text-align: center;
@@ -425,9 +493,6 @@ canvas {
 }
 
 
-
-
-
 /* Botón */
 .btn {
   display: inline-block;
@@ -439,19 +504,10 @@ canvas {
   font-size: 0.9rem;
 }
 
-
 .btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
 }
-
-/* Mensajes de error */
-.error-thumb {
-  color: #e74c3c;
-  padding: 20px;
-  text-align: center;
-}
-
 
 
 /* Estilos para miniaturas de PDF */
