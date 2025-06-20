@@ -197,60 +197,23 @@ function mostrarResultados(resultados) {
     contenedor.innerHTML = '';
 
     if (resultados.length === 0) {
-        contenedor.innerHTML = '<p class="no-resultados">No se encontraron documentos</p>';
+        contenedor.innerHTML = '<p class="aviso">No se encontraron documentos</p>';
         return;
     }
 
     resultados.forEach(doc => {
         const item = document.createElement('div');
-        item.className = 'resultado-item';
+        item.className = 'item-lista';
         item.innerHTML = `
-            <div class="resultado-info">
-                <div class="resultado-titulo">${doc.nombre}</div>
-                <div class="resultado-meta">Bloque ${doc.bloque.replace('bloque', '')}</div>
-            </div>
-            <div class="resultado-acciones">
-                <button class="btn-accion btn-ver" onclick="verPDF('${doc.ruta}')">Ver</button>
-                <a href="${doc.ruta}" download class="btn-accion btn-descargar">Descargar</a>
+            <span class="item-texto">${doc.nombre}</span>
+            <div class="botones-mini">
+                <button class="btn-mini btn-ver" onclick="window.open('${doc.ruta}', '_blank')">Ver</button>
+                <a href="${doc.ruta}" download class="btn-mini btn-descargar">Descargar</a>
             </div>
         `;
         contenedor.appendChild(item);
     });
 }
-
-// Evento de búsqueda mejorado
-document.getElementById('input-busqueda').addEventListener('input', function() {
-    const termino = this.value.trim().toLowerCase();
-    const sugerenciasBox = document.getElementById('sugerencias');
-    
-    sugerenciasBox.innerHTML = '';
-    if (termino.length < 2) {
-        sugerenciasBox.style.display = 'none';
-        return;
-    }
-
-    const sugerencias = buscarDocumentos(termino).slice(0, 5);
-    
-    if (sugerencias.length > 0) {
-        sugerencias.forEach(doc => {
-            const item = document.createElement('div');
-            item.className = 'sugerencia-item';
-            item.innerHTML = `
-                <div>${doc.nombre}</div>
-                <small class="text-muted">Bloque ${doc.bloque.replace('bloque', '')}</small>
-            `;
-            item.addEventListener('click', () => {
-                document.getElementById('input-busqueda').value = doc.nombre;
-                mostrarResultados([doc]);
-                sugerenciasBox.style.display = 'none';
-            });
-            sugerenciasBox.appendChild(item);
-        });
-        sugerenciasBox.style.display = 'block';
-    } else {
-        sugerenciasBox.style.display = 'none';
-    }
-});
 
 // templates.js
 function cargarHeader() {
