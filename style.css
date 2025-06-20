@@ -428,11 +428,11 @@ footer p {
   padding: 16px;
 }
 
-
 /* Miniaturas PDF */
-
 .doc-thumbnail {
-    height: 140px;
+    width: 100%;
+    height: 220px; /* Aumenta un poco la altura */
+    aspect-ratio: 3 / 4; /* Le da forma vertical (ancho:alto) */
     background: #f8f9fa;
     display: flex;
     align-items: center;
@@ -442,9 +442,9 @@ footer p {
 
 
 .doc-thumbnail canvas {
-    max-width: 100%;
-    max-height: 100%;
-    
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* opcional, suaviza la escala */
 }
 
 /* Texto y botones */
