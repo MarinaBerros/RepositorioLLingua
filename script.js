@@ -160,36 +160,36 @@ function buscarDocumentos(termino) {
     );
 }
 
-// Mostrar sugerencias
-document.getElementById('input-busqueda').addEventListener('input', function() {
-    const termino = this.value.toLowerCase();
-    const sugerenciasBox = document.getElementById('sugerencias');
-    sugerenciasBox.innerHTML = '';
+    // Mostrar sugerencias
+    document.getElementById('input-busqueda').addEventListener('input', function() {
+        const termino = this.value.toLowerCase();
+        const sugerenciasBox = document.getElementById('sugerencias');
+        sugerenciasBox.innerHTML = '';
 
-    if (termino.length < 2) {
-        sugerenciasBox.style.display = 'none';
-        return;
-    }
+        if (termino.length < 2) {
+            sugerenciasBox.style.display = 'none';
+            return;
+        }
 
-    const resultados = buscarDocumentos(termino).slice(0, 5);
-    
-    if (resultados.length > 0) {
-        resultados.forEach(doc => {
-            const item = document.createElement('div');
-            item.className = 'sugerencia-item';
-            item.textContent = doc.nombre;
-            item.addEventListener('click', () => {
-                document.getElementById('input-busqueda').value = doc.nombre;
-                mostrarResultados([doc]);
-                sugerenciasBox.style.display = 'none';
+        const resultados = buscarDocumentos(termino).slice(0, 5);
+        
+        if (resultados.length > 0) {
+            resultados.forEach(doc => {
+                const item = document.createElement('div');
+                item.className = 'sugerencia-item';
+                item.textContent = doc.nombre;
+                item.addEventListener('click', () => {
+                    document.getElementById('input-busqueda').value = doc.nombre;
+                    mostrarResultados([doc]);
+                    sugerenciasBox.style.display = 'none';
+                });
+                sugerenciasBox.appendChild(item);
             });
-            sugerenciasBox.appendChild(item);
-        });
-        sugerenciasBox.style.display = 'block';
-    } else {
-        sugerenciasBox.style.display = 'none';
-    }
-});
+            sugerenciasBox.style.display = 'block';
+        } else {
+            sugerenciasBox.style.display = 'none';
+        }
+    });
 
 // Función para mostrar resultados en formato lista
 function mostrarResultados(resultados) {
