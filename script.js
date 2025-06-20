@@ -135,94 +135,79 @@ function initPDFViewer() {
     });
 }
 
-
 // Función principal de búsqueda
-function buscarPDF() {
-    const query = document.getElementById('busqueda').value.toLowerCase();
-    const resultados = document.getElementById('resultados-busqueda');
-    resultados.innerHTML = '';
+function buscarDocumentos(query) {
+    const resultados = [];
+    const term = query.toLowerCase().trim();
+    
+    if (term === '') return resultados;
 
-    if (query.trim() === '') {
-        resultados.innerHTML = '<p class="aviso">Ingresa un término de búsqueda</p>';
-        return;
-    }
-
-    const encontrados = documentos.filter(doc => 
-        doc.nombre.toLowerCase().includes(query) || 
-        doc.bloque.toLowerCase().includes(query) ||
-        doc.ruta.toLowerCase().includes(query)
+    return documentos.filter(doc => 
+        doc.nombre.toLowerCase().includes(term) || 
+        doc.bloque.toLowerCase().includes(term) ||
+        doc.ruta.toLowerCase().includes(term)
     );
-
-    if (encontrados.length === 0) {
-        resultados.innerHTML = '<p class="aviso">No se encontraron resultados</p>';
-        return;
-    }
-
-    // Mostrar resultados
-    encontrados.forEach(doc => {
-        const card = document.createElement('div');
-        card.className = 'doc-card resultado-busqueda';
-        card.innerHTML = `
-            <div class="doc-preview">
-                <div class="doc-thumbnail" id="thumb-result-${doc.archivo.replace('.pdf', '')}">
-                    <span class="loading-text">Cargando...</span>
-                </div>
-                <div class="doc-info">
-                    <h3>${doc.nombre}</h3>
-                    <p class="bloque-info">Bloque ${doc.bloque.replace('bloque', '')}</p>
-                    <div class="doc-botones">
-                        <button class="btn-ver" onclick="abrirVisorPDF('${doc.ruta}')">Ver</button>
-                        <a href="${doc.ruta}" class="btn-descargar" target="_blank">Descargar</a>
-                    </div>
-                </div>
-            </div>
-        `;
-        resultados.appendChild(card);
-        generarMiniatura(doc, `thumb-result-${doc.archivo.replace('.pdf', '')}`);
-    });
 }
 
-// Autocompletado (sugerencias)
-document.getElementById('busqueda').addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    const suggestions = document.getElementById('suggestions');
-    suggestions.innerHTML = '';
+// Mostrar sugerencias al escribir
+document.getElementById('input-busqueda').addEventListener('input', function() {
+    const input = this.value;
+    const contenedor = document.getElementById('sugerencias');
+    contenedor.innerHTML = '';
 
-    if (query.length < 2) {
-        suggestions.style.display = 'none';
+    if (input.length < 2) {
+        contenedor.style.display = 'none';
         return;
     }
 
-    const sugerencias = documentos.filter(doc => 
-        doc.nombre.toLowerCase().includes(query) || 
-        doc.bloque.toLowerCase().includes(query)
-    ).slice(0, 5);
-
+    const sugerencias = buscarDocumentos(input).slice(0, 5);
+    
     if (sugerencias.length > 0) {
         sugerencias.forEach(doc => {
             const item = document.createElement('div');
-            item.className = 'suggestion-item';
+            item.className = 'sugerencia-item';
             item.textContent = doc.nombre;
             item.addEventListener('click', () => {
-                document.getElementById('busqueda').value = doc.nombre;
-                suggestions.style.display = 'none';
-                buscarPDF();
+                document.getElementById('input-busqueda').value = doc.nombre;
+                contenedor.style.display = 'none';
+                mostrarResultados([doc]);
             });
-            suggestions.appendChild(item);
+            contenedor.appendChild(item);
         });
-        suggestions.style.display = 'block';
+        contenedor.style.display = 'block';
     } else {
-        suggestions.style.display = 'none';
+        contenedor.style.display = 'none';
     }
 });
+
+// Mostrar resultados
+function mostrarResultados(resultados) {
+    const contenedor = document.getElementById('resultados-busqueda');
+    contenedor.innerHTML = '';
+
+    if (resultados.length === 0) {
+        contenedor.innerHTML = '<p class="aviso">No se encontraron resultados</p>';
+        return;
+    }
+
+    resultados.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doc-card';
+        card.innerHTML = `
+            <h3>${doc.nombre}</h3>
+            <p class="bloque">${doc.bloque}</p>
+            <a href="${doc.ruta}" class="btn-ver" target="_blank">Ver PDF</a>
+        `;
+        contenedor.appendChild(card);
+    });
+}
 
 // Cerrar sugerencias al hacer clic fuera
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.buscador-container')) {
-        document.getElementById('suggestions').style.display = 'none';
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.buscador-elegante')) {
+        document.getElementById('sugerencias').style.display = 'none';
     }
 });
-
 // templates.js
 function cargarHeader() {
     document.write(`
