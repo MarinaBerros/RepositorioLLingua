@@ -39,8 +39,9 @@ function cargarHeader() {
             <div class="submenu">
                 <a href="${basePath}bloques/bloque1.html">Bloque 1: Comunicación oral</a>
                 <a href="${basePath}bloques/bloque2.html">Bloque 2: Comunicación escrita</a>
-                <a href="${basePath}bloques/bloque3.html">Bloque 3: Dialectología</a>
-                <a href="${basePath}bloques/bloque4.html">Bloque 4: Educación lliteraria</a>
+                <a href="${basePath}bloques/bloque3.html">Bloque 3: Comunicación escrita</a>
+                <a href="${basePath}bloques/bloque4.html">Bloque 4: Conocimiento de la llingua</a>
+                <a href="${basePath}bloques/bloque5.html">Bloque 5: Educación lliteraria</a>
             </div>
         </div>
 
