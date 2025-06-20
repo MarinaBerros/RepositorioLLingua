@@ -236,15 +236,8 @@ main {
   transition: all 0.2s;
 }
 
-.ver-btn {
-  background: #3498db;
-  color: white;
-}
 
-.descargar-btn {
-  background: #2ecc71;
-  color: white;
-}
+
 
 .btn:hover {
   opacity: 0.9;
@@ -435,10 +428,6 @@ footer p {
   padding: 20px;
 }
 
-/* Tarjeta de documento */
-
-
-
 
 /* Miniaturas PDF */
 
@@ -480,6 +469,18 @@ footer p {
     font-size: 0.9rem;
     transition: background 0.3s;
 }
+
+.ver-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
 
 .btn-descargar:hover {
     background: #3e8e41;
