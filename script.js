@@ -1,4 +1,20 @@
-// Verificar carga de PDF.js
+ // script.js - Versión corregida
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifica si el elemento existe antes de usarlo
+    const buscador = document.querySelector('.buscador');
+    
+    if (buscador) {
+        buscador.addEventListener('input', function() {
+            this.style.backgroundColor = this.value ? '#fff8e1' : 'white';
+        });
+    }
+    
+    // Añade más verificaciones para otros elementos
+    const otroElemento = document.querySelector('.clase-inexistente');
+    if (otroElemento) {
+        // Tu código aquí
+    }
+}); // Verificar carga de PDF.js
 if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
     console.error('PDF.js no se cargó correctamente');
     // Cargar manualmente si falla
@@ -258,4 +274,3 @@ function mostrarResultados(resultados) {
         contenedor.appendChild(item);
     });
 }
-
