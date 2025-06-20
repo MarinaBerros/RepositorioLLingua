@@ -424,15 +424,15 @@ footer p {
 .document-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 16px;
+  padding: 16px;
 }
 
 
 /* Miniaturas PDF */
 
 .doc-thumbnail {
-    height: 200px;
+    height: 140px;
     background: #f8f9fa;
     display: flex;
     align-items: center;
@@ -440,10 +440,11 @@ footer p {
     position: relative;
 }
 
+
 .doc-thumbnail canvas {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
+    
 }
 
 /* Texto y botones */
@@ -460,10 +461,6 @@ footer p {
 }
 
 
-
-
-
-
 /* Estados de carga */
 .cargando, .aviso {
     text-align: center;
@@ -477,34 +474,6 @@ footer p {
 
 .error-text {
     color: #e74c3c;
-}
-
-.pdf-embebido {
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-.pdf-controles {
-    margin-top: 10px;
-    text-align: center;
-}
-.btn-primary {
-  background: #4CAF50;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #3e8e41;
-}
-
-.btn-secondary {
-  background: #f1f1f1;
-  color: #333;
-}
-
-.btn-secondary:hover {
-  background: #ddd;
 }
 
 .pdf-modal {
@@ -541,18 +510,6 @@ footer p {
 .close-modal:hover {
   color: #333;
 }
-
-
-/* Tarjeta de documento */
-
-
-
-/* Contenedor de la miniatura */
-
-
-
-/* Información del documento */
-
 
 
 
@@ -592,6 +549,12 @@ footer p {
     overflow: hidden;
     transition: all 0.3s ease;
     background: white;
+}
+
+
+.doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 
@@ -687,14 +650,7 @@ footer p {
     height: 100%;
     justify-content: center;
 }
-
-
 /* Mejoras para las tarjetas */
-
-.doc-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
 
 
 
