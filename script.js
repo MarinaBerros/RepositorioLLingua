@@ -135,48 +135,42 @@ function initPDFViewer() {
     });
 }
 
-// Función principal de búsqueda
-function buscarDocumentos(query) {
-    const resultados = [];
-    const term = query.toLowerCase().trim();
-    
-    if (term === '') return resultados;
-
+// Buscar documentos
+function buscarDocumentos(termino) {
     return documentos.filter(doc => 
-        doc.nombre.toLowerCase().includes(term) || 
-        doc.bloque.toLowerCase().includes(term) ||
-        doc.ruta.toLowerCase().includes(term)
+        doc.nombre.toLowerCase().includes(termino) || 
+        doc.bloque.toLowerCase().includes(termino)
     );
 }
 
-// Mostrar sugerencias al escribir
+// Mostrar sugerencias
 document.getElementById('input-busqueda').addEventListener('input', function() {
-    const input = this.value;
-    const contenedor = document.getElementById('sugerencias');
-    contenedor.innerHTML = '';
+    const termino = this.value.toLowerCase();
+    const sugerenciasBox = document.getElementById('sugerencias');
+    sugerenciasBox.innerHTML = '';
 
-    if (input.length < 2) {
-        contenedor.style.display = 'none';
+    if (termino.length < 2) {
+        sugerenciasBox.style.display = 'none';
         return;
     }
 
-    const sugerencias = buscarDocumentos(input).slice(0, 5);
+    const resultados = buscarDocumentos(termino).slice(0, 5);
     
-    if (sugerencias.length > 0) {
-        sugerencias.forEach(doc => {
+    if (resultados.length > 0) {
+        resultados.forEach(doc => {
             const item = document.createElement('div');
             item.className = 'sugerencia-item';
             item.textContent = doc.nombre;
             item.addEventListener('click', () => {
                 document.getElementById('input-busqueda').value = doc.nombre;
-                contenedor.style.display = 'none';
                 mostrarResultados([doc]);
+                sugerenciasBox.style.display = 'none';
             });
-            contenedor.appendChild(item);
+            sugerenciasBox.appendChild(item);
         });
-        contenedor.style.display = 'block';
+        sugerenciasBox.style.display = 'block';
     } else {
-        contenedor.style.display = 'none';
+        sugerenciasBox.style.display = 'none';
     }
 });
 
@@ -194,20 +188,36 @@ function mostrarResultados(resultados) {
         const card = document.createElement('div');
         card.className = 'doc-card';
         card.innerHTML = `
-            <h3>${doc.nombre}</h3>
-            <p class="bloque">${doc.bloque}</p>
-            <a href="${doc.ruta}" class="btn-ver" target="_blank">Ver PDF</a>
+            <div class="doc-preview">
+                <div class="doc-thumbnail">
+                    <span>📄 ${doc.bloque}</span>
+                </div>
+                <div class="doc-info">
+                    <h3>${doc.nombre}</h3>
+                    <div class="doc-botones">
+                        <a href="${doc.ruta}" class="btn-ver" target="_blank">Ver</a>
+                        <a href="${doc.ruta}" class="btn-descargar" download>Descargar</a>
+                    </div>
+                </div>
+            </div>
         `;
         contenedor.appendChild(card);
     });
 }
 
+// Botón de búsqueda
+document.getElementById('btn-buscar').addEventListener('click', () => {
+    const termino = document.getElementById('input-busqueda').value;
+    mostrarResultados(buscarDocumentos(termino));
+});
+
 // Cerrar sugerencias al hacer clic fuera
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.buscador-elegante')) {
+    if (!e.target.closest('.buscador-container')) {
         document.getElementById('sugerencias').style.display = 'none';
     }
 });
+
 // templates.js
 function cargarHeader() {
     document.write(`
