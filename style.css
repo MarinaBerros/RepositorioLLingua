@@ -702,14 +702,14 @@ footer p {
     justify-content: center;
 }
 
-.error-state .btn-descargar {
+/*.error-state .btn-descargar {
     background: #e74c3c;
 }
 
 .error-state .btn-descargar:hover {
     background: #c0392b;
 }
-
+*/
 /* Mejoras para las tarjetas */
 
 .doc-card:hover {
@@ -719,19 +719,3 @@ footer p {
 
 
 
-
-.btn-descargar {
-    display: inline-block;
-    padding: 0.6rem 1rem;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-}
-
-.btn-descargar:hover {
-    background-color: #3e8e41;
-    transform: translateY(-2px);
-}
