@@ -57,8 +57,9 @@ function cargarHeader() {
             <button class="menu-btn">RECURSOS DIXITALES</button>
             <div class="submenu">
                 <a href="${basePath}recursos/videos.html">Vídeos</a>
-                <a href="${basePath}recursos/blogs.html">Otros blogs</a>
+                <a href="${basePath}recursos/blogs.html">Blogs</a>
                 <a href="${basePath}recursos/diccionarios.html">Diccionarios</a>
+                <a href="${basePath}recursos/otros.html">Otros Ferramientes</a>
             </div>
         </div>
     </nav>
