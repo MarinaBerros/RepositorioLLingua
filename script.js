@@ -9,6 +9,23 @@ if (typeof window['pdfjs-dist/build/pdf'] === 'undefined') {
 } else {
     initPDFViewer();
 }
+
+const documentos = [
+    {
+        nombre: "Xuegu animales espresión oral",
+        archivo: "xuegu_animales_expresion_oral.pdf",
+        bloque: "bloque1",
+        ruta: "/RepositorioLLingua/pdfs/bloque1/xuegu_animales_expresion_oral.pdf"
+    },
+    {
+        nombre: "Madreñes - Comprensión y espresión escrita",
+        archivo: "madrenes_comprension_expresion_escrita.pdf",
+        bloque: "bloque3",
+        ruta: "/RepositorioLLingua/pdfs/bloque3/madrenes_comprension_expresion_escrita.pdf"
+    }
+];
+
+
 function verPDF(ruta) {
     // Abre el PDF en una nueva pestaña con el visor nativo
     window.open(ruta, '_blank');
