@@ -440,6 +440,7 @@ main {
 .bloque2 { background-color: var(--color-secundario); }
 .bloque3 { background-color: #2ecc71; }
 .bloque4 { background-color: #9b59b6; }
+.bloque5 { background-color: #dadd13; }
 
 /* Pie de página */
 footer {
